@@ -1,11 +1,16 @@
-package cs.med.mtz.moises.contrato13710
+package cs.med.mtz.moises.contrato13710.presentation.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import cs.med.mtz.moises.contrato13710.R
 
+/** */
 class MainActivity : AppCompatActivity() {
+
+    /** */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
     }
+
 }
