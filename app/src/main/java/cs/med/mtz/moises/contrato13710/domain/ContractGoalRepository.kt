@@ -1,18 +1,21 @@
 package cs.med.mtz.moises.contrato13710.domain
 
-import cs.med.mtz.moises.contrato13710.domain.entity.Contract
-import cs.med.mtz.moises.contrato13710.data.contract.dao.ContractDao
-import cs.med.mtz.moises.contrato13710.data.contract.dto.ContractDto
+import cs.med.mtz.moises.contrato13710.data.dao.ContractDao
+import cs.med.mtz.moises.contrato13710.data.dao.GoalDao
+import cs.med.mtz.moises.contrato13710.data.dto.ContractDto
+import cs.med.mtz.moises.contrato13710.data.dto.GoalDto
 import cs.med.mtz.moises.contrato13710.domain.entity.Goal
 
 /** */
 class ContractGoalRepository(
-    private val contractDao: ContractDao
+    private val goalDao: GoalDao,
+    private val contractDao: ContractDao,
 ) {
 
     /** */
     suspend fun createGoal(name: String) {
-        TODO()
+        val goalDto = GoalDto(name)
+        goalDao.insert(goalDto)
     }
 
     suspend fun getGoals(): List<Goal> {

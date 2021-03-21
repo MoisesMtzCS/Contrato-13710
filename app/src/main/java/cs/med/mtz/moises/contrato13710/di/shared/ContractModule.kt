@@ -9,6 +9,7 @@ val contractModule: Module = module {
 
     single {
         ContractGoalRepository(
+            goalDao = get(),
             contractDao = get(),
         )
     }
