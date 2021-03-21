@@ -20,29 +20,28 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
         startActivitySplash()
-        execute()
     }
 
     /** */
-    private fun execute() {
-//        splashViewModel.createDummyContractAsLiveData().observe(this) {
-//            Log.e("TEST", "YEAAAAH")
+//    private fun execute() {
+////        splashViewModel.createDummyContractAsLiveData().observe(this) {
+////            Log.e("TEST", "YEAAAAH")
+////        }
+//        val now = Date()
+//        val nextAlarm = Calendar.getInstance().apply {
+//            time = now
+//            add(Calendar.DATE, 1)
+//            add(Calendar.HOUR, 3)
+//
 //        }
-        val now = Date()
-        val nextAlarm = Calendar.getInstance().apply {
-            time = now
-            add(Calendar.DATE, 1)
-            add(Calendar.HOUR, 3)
-
-        }
-
-        GregorianCalendar(2021, 3, 18)
-
-
-        splashViewModel.getAllContractsAsLiveData().observe(this) {
-            Log.e("TEST", it.toString())
-        }
-    }
+//
+//        GregorianCalendar(2021, 3, 18)
+//
+//
+//        splashViewModel.getAllContractsAsLiveData().observe(this) {
+//            Log.e("TEST", it.toString())
+//        }
+//    }
 
 
     /**
