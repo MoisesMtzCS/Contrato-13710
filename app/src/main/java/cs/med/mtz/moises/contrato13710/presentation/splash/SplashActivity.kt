@@ -53,6 +53,7 @@ class SplashActivity : AppCompatActivity() {
         CoroutineScope(Dispatchers.Main).launch {
             delay(1200)
             startActivity(intent)
+            finish()
         }
     }
 }

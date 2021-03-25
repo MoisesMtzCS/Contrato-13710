@@ -4,7 +4,9 @@ import cs.med.mtz.moises.contrato13710.data.dao.ContractDao
 import cs.med.mtz.moises.contrato13710.data.dao.GoalDao
 import cs.med.mtz.moises.contrato13710.data.dto.ContractDto
 import cs.med.mtz.moises.contrato13710.data.dto.GoalDto
+import cs.med.mtz.moises.contrato13710.domain.entity.Contract
 import cs.med.mtz.moises.contrato13710.domain.entity.Goal
+import java.util.*
 
 /** */
 class ContractGoalRepository(
@@ -18,16 +20,25 @@ class ContractGoalRepository(
         goalDao.insert(goalDto)
     }
 
-    suspend fun getGoals(): List<Goal> {
-        TODO()
+    suspend fun getGoal(durationInDays: Int, createDate: Date): List<Goal> {
+        val goalDto = goalDao.getGoals()
+        val goals = goalDto.map { it ->
+            val contractsDto = contractDao.getByGoalId(it.id!!)
+
+            it.toGoal(
+                contractsDto.map { it.toContract(durationInDays, createDate) })
+        }
+        return goals
     }
 
     suspend fun deleteGoal(id: Int) {
-        TODO()
+        val goal = goalDao.getById(id)
+        goalDao.deleteGoal(goal)
     }
 
     suspend fun updateGoalName(id: Int, newName: String) {
-        TODO()
+        val goal = goalDao.getById(id)
+        goal.name = newName
     }
 
     /** */

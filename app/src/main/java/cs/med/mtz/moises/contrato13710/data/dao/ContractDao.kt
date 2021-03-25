@@ -2,6 +2,7 @@ package cs.med.mtz.moises.contrato13710.data.dao
 
 import androidx.room.*
 import cs.med.mtz.moises.contrato13710.data.dto.ContractDto
+import cs.med.mtz.moises.contrato13710.domain.entity.Contract
 
 @Dao
 interface ContractDao {
