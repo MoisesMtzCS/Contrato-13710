@@ -32,12 +32,11 @@ class ContractGoalRepository(
 
     suspend fun getGoals(): List<Goal> {
         val goalDto = goalDao.getGoals()
-        val goals = goalDto.map { it ->
+        return goalDto.map { it ->
             val contractsDto = contractDao.getByGoalId(it.id!!)
 
             it.toGoal(contractsDto.map { it.toContract(1, Date()) })
         }
-        return goals
     }
 
     /** */
@@ -56,7 +55,7 @@ class ContractGoalRepository(
     }
 
     /** */
-    suspend fun createContract(goalId: Int, target: String) {
+    private suspend fun createContract(goalId: Int, target: String) {
         val contractDto = ContractDto(goalId, target)
         contractDao.insert(contractDto)
     }

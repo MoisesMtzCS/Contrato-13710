@@ -3,6 +3,7 @@ package cs.med.mtz.moises.contrato13710.presentation.contract_holders
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import cs.med.mtz.moises.contrato13710.databinding.ActivityContractItemsBinding
 import cs.med.mtz.moises.contrato13710.domain.entity.Contract
@@ -46,6 +47,10 @@ class ContractItemsActivity : AppCompatActivity() {
     private fun execute() {
         loadContractsList(contractId)
         titleGoal()
+        val necesitaSerVisible = false // TODO
+        binding.tilGoalName.visibility = if (necesitaSerVisible)
+            View.VISIBLE
+        else View.GONE
     }
 
     private fun loadContractsList(id: Int) {
@@ -64,6 +69,7 @@ class ContractItemsActivity : AppCompatActivity() {
 
     private fun setupOnUpdateGoalNameClickListener(id: Int) {
         binding.updateButton.setOnClickListener {
+            // binding.nameGoal.visibility = View.VISIBLE
             contractItemsViewModel.updateLiveData(id,newName).observe(this) {}
             startActivity(Intent(this, GoalItemsActivity::class.java))
             finish()
