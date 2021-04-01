@@ -1,10 +1,10 @@
 package cs.med.mtz.moises.contrato13710.presentation.goal_holders
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import cs.med.mtz.moises.contrato13710.databinding.ActivityGoalAndAddBinding
+import cs.med.mtz.moises.contrato13710.databinding.ActivityGoalItemsBinding
 import cs.med.mtz.moises.contrato13710.domain.entity.Contract
 import cs.med.mtz.moises.contrato13710.domain.entity.Goal
 import cs.med.mtz.moises.contrato13710.presentation.adapters.goal_adapter.GoalAdapter
@@ -12,8 +12,8 @@ import org.koin.android.viewmodel.ext.android.viewModel
 
 class GoalItemsActivity : AppCompatActivity() {
     /**  */
-    private val binding: ActivityGoalAndAddBinding by lazy {
-        ActivityGoalAndAddBinding.inflate(layoutInflater)
+    private val binding: ActivityGoalItemsBinding by lazy {
+        ActivityGoalItemsBinding.inflate(layoutInflater)
     }
 
     private val goalAndAddViewModel: GoalItemsViewModel by viewModel()
