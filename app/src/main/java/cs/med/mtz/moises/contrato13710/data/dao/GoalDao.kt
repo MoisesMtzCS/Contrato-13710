@@ -8,7 +8,7 @@ import cs.med.mtz.moises.contrato13710.data.dto.GoalDto
 interface GoalDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(goalDto: GoalDto)
+    suspend fun insert(goalDto: GoalDto): Long
 
 
     @Query("SELECT * FROM goal_table")
@@ -16,7 +16,8 @@ interface GoalDao {
 
 
     @Query("SELECT * FROM goal_table WHERE id = :id")
-    fun getById(id: Int): GoalDto
+    suspend fun getById(id: Int): GoalDto
+
 
 
     @Delete

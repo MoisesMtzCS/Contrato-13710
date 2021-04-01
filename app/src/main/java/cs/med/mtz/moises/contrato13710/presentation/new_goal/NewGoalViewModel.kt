@@ -6,7 +6,7 @@ import androidx.lifecycle.asLiveData
 import cs.med.mtz.moises.contrato13710.domain.ContractGoalRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 
@@ -15,19 +15,25 @@ class NewGoalViewModel(
 ) : ViewModel() {
 
 
-//    /** */
-//    fun createDummyContractAsLiveData(): LiveData<Unit> = flow {
-//        val target: String = ""
-//        contractGoalRepository.createContract(1, target, 1)
-//        emit(Unit)
-//    }.asLiveData(Dispatchers.IO)
+    /** */
 
 
-    fun newGoal(name: String) {
-        CoroutineScope(Dispatchers.IO).launch {
-            contractGoalRepository.createGoal(name)
-        }
-    }
+    fun createGoalFullLiveData(name: String, target: String): LiveData<Unit> = flow {
+        contractGoalRepository.createGoalAndContract(name, target)
+        emit(Unit)
+    }.asLiveData(Dispatchers.IO)
+
+
+    fun createDummyContractAsLiveData(target: String): LiveData<Unit> = flow {
+        //contractGoalRepository.createContract(target)
+        emit(Unit)
+    }.asLiveData(Dispatchers.IO)
+
+
+    fun newGoalLiveData(name: String): LiveData<Unit> = flow {
+        contractGoalRepository.createGoal(name)
+        emit(Unit)
+    }.asLiveData(Dispatchers.IO)
 
 
 }

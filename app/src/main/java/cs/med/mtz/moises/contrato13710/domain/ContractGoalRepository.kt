@@ -15,36 +15,57 @@ class ContractGoalRepository(
 ) {
 
     /** */
+    suspend fun createGoalAndContract(name: String, target: String) {
+        val goalDto = GoalDto(name)
+        val goalId: Long = goalDao.insert(goalDto)
+        createContract(goalId.toInt(), target)
+
+    }
+
+
     suspend fun createGoal(name: String) {
         val goalDto = GoalDto(name)
         goalDao.insert(goalDto)
     }
 
-    suspend fun getGoal(durationInDays: Int, createDate: Date): List<Goal> {
+    /** */
+
+    suspend fun getGoals(): List<Goal> {
         val goalDto = goalDao.getGoals()
         val goals = goalDto.map { it ->
             val contractsDto = contractDao.getByGoalId(it.id!!)
 
-            it.toGoal(
-                contractsDto.map { it.toContract(durationInDays, createDate) })
+            it.toGoal(contractsDto.map { it.toContract(1, Date()) })
         }
         return goals
     }
+
+    /** */
 
     suspend fun deleteGoal(id: Int) {
         val goal = goalDao.getById(id)
         goalDao.deleteGoal(goal)
     }
 
+    /** */
+
     suspend fun updateGoalName(id: Int, newName: String) {
         val goal = goalDao.getById(id)
         goal.name = newName
+        goalDao.insert(goal)
     }
 
     /** */
-    suspend fun createContract(goalId: Int, target: String, durationInDays: Int) {
-        val contractDto = ContractDto(1, target)
+    suspend fun createContract(goalId: Int, target: String) {
+        val contractDto = ContractDto(goalId, target)
         contractDao.insert(contractDto)
+    }
+
+    suspend fun getContracts(id: Int): List<Contract> {
+        val contractDto = contractDao.getById(id)
+        return contractDto.map {
+            it.toContract(1, Date())
+        }
     }
 
 

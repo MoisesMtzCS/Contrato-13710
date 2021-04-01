@@ -20,29 +20,8 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
         startActivitySplash()
+
     }
-
-    /** */
-//    private fun execute() {
-////        splashViewModel.createDummyContractAsLiveData().observe(this) {
-////            Log.e("TEST", "YEAAAAH")
-////        }
-//        val now = Date()
-//        val nextAlarm = Calendar.getInstance().apply {
-//            time = now
-//            add(Calendar.DATE, 1)
-//            add(Calendar.HOUR, 3)
-//
-//        }
-//
-//        GregorianCalendar(2021, 3, 18)
-//
-//
-//        splashViewModel.getAllContractsAsLiveData().observe(this) {
-//            Log.e("TEST", it.toString())
-//        }
-//    }
-
 
     /**
      *
@@ -50,10 +29,10 @@ class SplashActivity : AppCompatActivity() {
 
     private fun startActivitySplash() {
         val intent = Intent(this, MainActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         CoroutineScope(Dispatchers.Main).launch {
             delay(1200)
             startActivity(intent)
-            finish()
         }
     }
 }

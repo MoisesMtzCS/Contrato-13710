@@ -6,4 +6,10 @@
     <string name="nombre_de_la_meta">Nombre de la meta</string>
     <string name="meta">Meta</string>
     <string name="guardar">Guardar</string>
+    <string name="mis_metas">Mis metas</string>
+    <string name="crear_meta">Crear meta</string>
+    <string name="eliminar_meta">Eliminar Meta</string>
+    <string name="editar_meta">Editar meta</string>
+    <string name="nuevo_nombre">Nuevo nombre</string>
+    <string name="cambiar_nombre">Cambiar nombre</string>
 </resources>

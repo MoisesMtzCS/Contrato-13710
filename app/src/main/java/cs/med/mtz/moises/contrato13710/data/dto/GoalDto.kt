@@ -18,5 +18,4 @@ data class GoalDto(
         name = name,
         contracts = contracts
     )
-
 }

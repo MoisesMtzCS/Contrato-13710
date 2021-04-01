@@ -11,7 +11,7 @@ interface ContractDao {
     suspend fun getAll(): List<ContractDto>
 
     @Query("SELECT * FROM contract_table WHERE id = :id")
-    fun getById(id: Int): ContractDto
+    fun getById(id: Int): List<ContractDto>
 
     @Query("SELECT * FROM contract_table WHERE goal_id = :goalId")
     suspend fun getByGoalId(goalId: Int): List<ContractDto>

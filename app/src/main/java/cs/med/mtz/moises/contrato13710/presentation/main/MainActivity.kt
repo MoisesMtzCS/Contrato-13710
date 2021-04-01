@@ -3,9 +3,8 @@ package cs.med.mtz.moises.contrato13710.presentation.main
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.renderscript.ScriptGroup
-import cs.med.mtz.moises.contrato13710.R
 import cs.med.mtz.moises.contrato13710.databinding.ActivityMainBinding
+import cs.med.mtz.moises.contrato13710.presentation.goal_holders.GoalItemsActivity
 import cs.med.mtz.moises.contrato13710.presentation.new_goal.NewGoalActivity
 
 /** */
@@ -20,13 +19,25 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        goToCreateContract()
+        execute()
     }
 
     /** */
+    private fun execute() {
+        goToCreateGoal()
+        goToListGoals()
 
-    private fun goToCreateContract() {
+    }
+
+    private fun goToCreateGoal() {
         val intent = Intent(this, NewGoalActivity::class.java)
+        binding.startCreate.setOnClickListener {
+            startActivity(intent)
+        }
+    }
+
+    private fun goToListGoals() {
+        val intent = Intent(this, GoalItemsActivity::class.java)
         binding.start.setOnClickListener {
             startActivity(intent)
         }

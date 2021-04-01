@@ -9,13 +9,13 @@ import java.util.*
 @Entity(tableName = "contract_table")
 data class ContractDto(
     @ColumnInfo(name = "goal_id") val goalId: Int,
-    val target: String,
+    val target: String
 ) {
 
     @PrimaryKey(autoGenerate = true)
     var id: Int? = null
 
-    fun toContract( durationInDays: Int, createDate: Date): Contract =
+    fun toContract(durationInDays: Int, createDate: Date): Contract =
         Contract(
             id = id!!,
             target = target,

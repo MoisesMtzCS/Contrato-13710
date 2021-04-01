@@ -25,23 +25,22 @@
             android:contentDescription="@null"
             android:src="@drawable/ic_contract__2_" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="22dp"
-            android:text="@string/comencemos_creando_una_meta"
-            android:textColor="@color/black"
-            android:textSize="21sp" />
-
 
         <Button
+            android:id="@+id/start_create"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="22dp"
+            android:layout_marginTop="30dp"
+            android:text="@string/crear_meta" />
+
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/start"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="22dp"
-            android:layout_marginTop="22dp"
-            android:text="@string/iniciar" />
+            android:layout_marginTop="15dp"
+            android:text="@string/mis_metas" />
 
     </LinearLayout>
 
