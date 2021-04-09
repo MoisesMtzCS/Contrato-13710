@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".presentation.contract_holders.ContractItemsActivity">
+        tools:context=".presentation.contract_items.ContractItemsActivity">
 
         <TextView
             android:id="@+id/name_goal"
@@ -24,7 +24,7 @@
             android:id="@+id/rv_Contract"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:itemCount="5"
+            tools:itemCount="4"
             tools:listitem="@layout/view_holder_contract" />
 
         <com.google.android.material.textfield.TextInputLayout
@@ -32,7 +32,9 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp">
+            android:layout_marginHorizontal="20dp"
+            android:visibility="gone"
+            tools:visibility="visible">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etName"
@@ -43,8 +45,17 @@
         </com.google.android.material.textfield.TextInputLayout>
 
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/update_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="12dp"
+            android:text="@string/guardar"
+            android:visibility="gone"
+            tools:visibility="visible" />
+
+        <Button
+            android:id="@+id/make_visible_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="12dp"
@@ -56,6 +67,16 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="12dp"
             android:text="@string/eliminar_meta" />
+
+        <Button
+            android:id="@+id/go_new_contract"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="12dp"
+            android:text="@string/nuevo_contrato"
+            android:visibility="gone"
+            tools:visibility="visible" />
+
 
     </LinearLayout>
 

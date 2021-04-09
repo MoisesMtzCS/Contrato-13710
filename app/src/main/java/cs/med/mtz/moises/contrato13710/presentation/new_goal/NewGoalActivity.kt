@@ -1,11 +1,13 @@
 package cs.med.mtz.moises.contrato13710.presentation.new_goal
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import cs.med.mtz.moises.contrato13710.R
 import cs.med.mtz.moises.contrato13710.databinding.ActivityNewGoalBinding
-import cs.med.mtz.moises.contrato13710.presentation.goal_holders.GoalItemsActivity
+import cs.med.mtz.moises.contrato13710.presentation.goal_items.GoalItemsActivity
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class NewGoalActivity : AppCompatActivity() {
@@ -47,8 +49,17 @@ class NewGoalActivity : AppCompatActivity() {
                 val intent = Intent(this, GoalItemsActivity::class.java)
                 startActivity(intent)
                 finish()
-            } else Toast.makeText(this, "Datos Incompletos", Toast.LENGTH_SHORT).show()
+            } else alertIncompleteData()
         }
+    }
+
+
+    private fun alertIncompleteData() {
+        val builder = AlertDialog.Builder(this)
+            .setTitle(getString(R.string.incomplete_data))
+            .setNegativeButton("aceptar", null)
+        val dialog: AlertDialog = builder.create()
+        dialog.show()
     }
 
 

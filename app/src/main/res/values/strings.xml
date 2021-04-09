@@ -12,4 +12,15 @@
     <string name="editar_meta">Editar meta</string>
     <string name="nuevo_nombre">Nuevo nombre</string>
     <string name="cambiar_nombre">Cambiar nombre</string>
+    <string name="nuevo_contrato">Nuevo contrato</string>
+    <string name="confirm_delete">Seguro que desea eliminar la meta?</string>
+    <string name="sin_metas">Sin metas</string>
+    <string name="detalles_del_contrato">Detalles del contrato</string>
+    <string name="contract_duration_in_days">Duración en días: %d</string>
+    <string name="contract_details_of_target">Detalles de la meta: %s</string>
+    <string name="incomplete_data">Datos incompletos</string>
+    <plurals name="days_count">
+        <item quantity="one">%d día</item>
+        <item quantity="other">%d días</item>
+    </plurals>
 </resources>

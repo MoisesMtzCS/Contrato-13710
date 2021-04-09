@@ -7,6 +7,6 @@ data class Contract(
     val id: Int,
     val target: String,
     val durationInDays:Int,
-    val createDate: Date
+    val creationDate: Date
 ){
 }

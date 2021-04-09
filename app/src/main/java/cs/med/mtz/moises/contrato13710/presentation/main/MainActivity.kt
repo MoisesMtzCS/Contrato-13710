@@ -4,7 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import cs.med.mtz.moises.contrato13710.databinding.ActivityMainBinding
-import cs.med.mtz.moises.contrato13710.presentation.goal_holders.GoalItemsActivity
+import cs.med.mtz.moises.contrato13710.presentation.goal_items.GoalItemsActivity
 import cs.med.mtz.moises.contrato13710.presentation.new_goal.NewGoalActivity
 
 /** */

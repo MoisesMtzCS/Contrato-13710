@@ -20,7 +20,17 @@ class ContractDetailsActivity : AppCompatActivity() {
         execute()
     }
 
-    fun execute (){
-        binding.tvDetails.text = intent.extras?.getString("TARGET")
+    fun execute() {
+        val durationInDays = intent.extras?.getInt("DURATION")!!
+        val detailsOfTarget = intent.extras?.getString("TARGET")!!
+        binding.tvTarget.text =
+            getString(R.string.contract_details_of_target, detailsOfTarget)
+        // binding.tvTarget.text = intent.extras?.getString("TARGET")
+        binding.tvTime.text =
+            getString(R.string.contract_duration_in_days, durationInDays)
+//        binding.tvTime.text = resources
+//            .getQuantityString(R.plurals.days_count, durationInDays, durationInDays)
+
+
     }
 }

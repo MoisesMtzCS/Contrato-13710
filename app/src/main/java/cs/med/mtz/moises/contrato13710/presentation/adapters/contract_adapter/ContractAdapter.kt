@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import cs.med.mtz.moises.contrato13710.databinding.ViewHolderContractBinding
 import cs.med.mtz.moises.contrato13710.domain.entity.Contract
 import cs.med.mtz.moises.contrato13710.presentation.contract_details.ContractDetailsActivity
+import java.text.SimpleDateFormat
+import java.util.*
 
 class ContractAdapter(
     private val contracts: List<Contract>
@@ -29,15 +31,18 @@ class ContractAdapter(
         return contracts.size
     }
 
+    private val dateFormat: String = "dd/MMMM/yy HH:mm"
 
     override fun onBindViewHolder(holder: ContractViewHolder, position: Int) {
         val contract: Contract = contracts[position]
-        //holder.binding.tvTitle.text = contract.id.toString
+        holder.binding.tvTitle.text =
+            SimpleDateFormat(dateFormat, Locale.getDefault()).format(contract.creationDate)
 
         holder.itemView.setOnClickListener {
             val context = holder.itemView.context
-            val intent = Intent(context,ContractDetailsActivity::class.java).apply {
+            val intent = Intent(context, ContractDetailsActivity::class.java).apply {
                 putExtra("TARGET", contract.target)
+                putExtra("DURATION", contract.durationInDays)
             }
             ContextCompat.startActivity(context, intent, null)
         }

@@ -8,7 +8,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import cs.med.mtz.moises.contrato13710.databinding.ViewHolderGoalBinding
 import cs.med.mtz.moises.contrato13710.domain.entity.Goal
-import cs.med.mtz.moises.contrato13710.presentation.contract_holders.ContractItemsActivity
+import cs.med.mtz.moises.contrato13710.presentation.contract_items.ContractItemsActivity
 
 
 class GoalAdapter(

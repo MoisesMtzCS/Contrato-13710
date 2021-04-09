@@ -7,15 +7,38 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".presentation.goal_holders.GoalItemsActivity">
+        tools:context=".presentation.goal_items.GoalItemsActivity"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/message_no_goals"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:text="@string/sin_metas"
+            android:textAlignment="center"
+            android:textSize="25sp"
+            android:visibility="gone"
+            tools:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/iv_sad"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/ic_sad"
+            android:contentDescription="@null"
+            android:visibility="gone"
+            tools:visibility="visible"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_Contract"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
+            tools:itemCount="6"
             tools:listitem="@layout/view_holder_goal" />
-
 
 
     </LinearLayout>

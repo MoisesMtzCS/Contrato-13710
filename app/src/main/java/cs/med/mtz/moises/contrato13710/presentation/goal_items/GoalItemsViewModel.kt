@@ -1,4 +1,4 @@
-package cs.med.mtz.moises.contrato13710.presentation.goal_holders
+package cs.med.mtz.moises.contrato13710.presentation.goal_items
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -10,7 +10,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 
 class GoalItemsViewModel(
     private val contractGoalRepository: ContractGoalRepository

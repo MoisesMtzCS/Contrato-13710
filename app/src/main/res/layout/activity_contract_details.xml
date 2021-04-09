@@ -15,18 +15,34 @@
             android:layout_height="100dp"
             android:layout_gravity="center"
             android:layout_marginTop="22dp"
-            android:src="@drawable/ic_informacion"
-            android:contentDescription="@null" />
-
+            android:contentDescription="@null"
+            android:src="@drawable/ic_informacion" />
 
         <TextView
-            android:id="@+id/tv_details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:text="@string/detalles_del_contrato"
+            android:textAlignment="center"
+            android:textSize="22sp" />
+
+        <TextView
+            android:id="@+id/tv_target"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="22dp"
             android:layout_marginTop="22dp"
             android:textColor="@color/black"
             tools:text="Detalles de contrato" />
+
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="22dp"
+            android:layout_marginTop="22dp"
+            android:textColor="@color/black"
+            tools:text="Duracion" />
 
     </LinearLayout>
 </layout>

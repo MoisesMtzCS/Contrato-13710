@@ -10,9 +10,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Contrato13710">
-        <activity android:name=".presentation.contract_details.ContractDetailsActivity"></activity>
-        <activity android:name=".presentation.contract_holders.ContractItemsActivity" />
-        <activity android:name=".presentation.goal_holders.GoalItemsActivity" />
+        <activity android:name=".presentation.new_contract.NewContractActivity"></activity>
+        <activity android:name=".presentation.contract_details.ContractDetailsActivity" />
+        <activity android:name=".presentation.contract_items.ContractItemsActivity" />
+        <activity android:name=".presentation.goal_items.GoalItemsActivity" />
         <activity android:name=".presentation.new_goal.NewGoalActivity" />
         <activity
             android:name=".presentation.splash.SplashActivity"

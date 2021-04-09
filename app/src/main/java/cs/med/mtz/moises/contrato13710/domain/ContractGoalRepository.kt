@@ -35,7 +35,7 @@ class ContractGoalRepository(
         return goalDto.map { it ->
             val contractsDto = contractDao.getByGoalId(it.id!!)
 
-            it.toGoal(contractsDto.map { it.toContract(1, Date()) })
+            it.toGoal(contractsDto.map { it.toContract() })
         }
     }
 
@@ -43,6 +43,7 @@ class ContractGoalRepository(
 
     suspend fun deleteGoal(id: Int) {
         val goal = goalDao.getById(id)
+        contractDao.deleteContractsByGoalId(id)
         goalDao.deleteGoal(goal)
     }
 
@@ -55,15 +56,16 @@ class ContractGoalRepository(
     }
 
     /** */
-    private suspend fun createContract(goalId: Int, target: String) {
-        val contractDto = ContractDto(goalId, target)
+    suspend fun createContract(goalId: Int, target: String) {
+        val contractDto = ContractDto(goalId, target, 1, Date())
         contractDao.insert(contractDto)
     }
 
+
     suspend fun getContracts(id: Int): List<Contract> {
-        val contractDto = contractDao.getById(id)
+        val contractDto = contractDao.getByGoalId(id)
         return contractDto.map {
-            it.toContract(1, Date())
+            it.toContract()
         }
     }
 
