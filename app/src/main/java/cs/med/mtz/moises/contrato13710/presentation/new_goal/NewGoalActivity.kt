@@ -1,6 +1,9 @@
 package cs.med.mtz.moises.contrato13710.presentation.new_goal
 
+import android.app.AlarmManager
 import android.app.AlertDialog
+import android.app.PendingIntent
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
@@ -8,7 +11,10 @@ import androidx.appcompat.app.AppCompatActivity
 import cs.med.mtz.moises.contrato13710.R
 import cs.med.mtz.moises.contrato13710.databinding.ActivityNewGoalBinding
 import cs.med.mtz.moises.contrato13710.presentation.goal_items.GoalItemsActivity
+import cs.med.mtz.moises.contrato13710.system.broadcast.NotificationsBroadcastReceiver
 import org.koin.android.viewmodel.ext.android.viewModel
+import java.util.*
+
 
 class NewGoalActivity : AppCompatActivity() {
 
@@ -20,6 +26,7 @@ class NewGoalActivity : AppCompatActivity() {
         get() = binding.target.text.toString()
 
     /** */
+
 
     private val newGoalViewModel: NewGoalViewModel by viewModel()
 
@@ -45,7 +52,8 @@ class NewGoalActivity : AppCompatActivity() {
     private fun createGoalAndContractClickListener() {
         binding.save.setOnClickListener {
             if (nameGoal.isNotBlank() && target.isNotBlank()) {
-                newGoalViewModel.createGoalFullLiveData(nameGoal, target).observe(this) {}
+                launchNotificationAfterTime()
+                newGoalViewModel.createGoalFullLiveData(nameGoal, target, 1).observe(this) {}
                 val intent = Intent(this, GoalItemsActivity::class.java)
                 startActivity(intent)
                 finish()
@@ -62,6 +70,15 @@ class NewGoalActivity : AppCompatActivity() {
         dialog.show()
     }
 
+
+    private fun launchNotificationAfterTime() {
+        val millsInADay = 86_400_000
+        val intent = Intent(this, NotificationsBroadcastReceiver::class.java)
+        val pendingIntent = PendingIntent.getBroadcast(this, 0, intent, 0)
+        val alarmManager: AlarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        val targetInMills = Date().time + 10000//millsInADay
+        alarmManager.set(AlarmManager.RTC_WAKEUP, targetInMills, pendingIntent)
+    }
 
 }
 

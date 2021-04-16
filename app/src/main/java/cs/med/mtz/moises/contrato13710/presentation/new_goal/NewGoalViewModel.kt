@@ -18,10 +18,11 @@ class NewGoalViewModel(
     /** */
 
 
-    fun createGoalFullLiveData(name: String, target: String): LiveData<Unit> = flow {
-        contractGoalRepository.createGoalAndContract(name, target)
-        emit(Unit)
-    }.asLiveData(Dispatchers.IO)
+    fun createGoalFullLiveData(name: String, target: String, durationInDays: Int): LiveData<Unit> =
+        flow {
+            contractGoalRepository.createGoalAndContract(name, target, durationInDays)
+            emit(Unit)
+        }.asLiveData(Dispatchers.IO)
 
 
     fun createDummyContractAsLiveData(target: String): LiveData<Unit> = flow {

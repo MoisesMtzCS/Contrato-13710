@@ -25,6 +25,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".presentation.main.MainActivity" />
+
+        <receiver android:name=".system.broadcast.NotificationsBroadcastReceiver" />
+        <activity android:name=".presentation.into_activity.IntoActivity"
+            android:label="My Custom AppIntro" />
+
     </application>
 
 </manifest>

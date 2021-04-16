@@ -12,8 +12,8 @@ class NewContractViewModel(
 ) : ViewModel() {
     /** */
 
-    fun newContractLiveData(id: Int, target: String): LiveData<Unit> = flow {
-        contractGoalRepository.createContract(id, target)
+    fun newContractLiveData(id: Int, target: String, durationInDays: Int): LiveData<Unit> = flow {
+        contractGoalRepository.createContract(id, target, durationInDays)
         emit(Unit)
     }.asLiveData(Dispatchers.IO)
 }

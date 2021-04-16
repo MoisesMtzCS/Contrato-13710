@@ -1,13 +1,18 @@
 package cs.med.mtz.moises.contrato13710.presentation.new_contract
 
+import android.app.AlarmManager
 import android.app.AlertDialog
+import android.app.PendingIntent
+import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import cs.med.mtz.moises.contrato13710.R
 import cs.med.mtz.moises.contrato13710.databinding.ActivityNewContractBinding
 import cs.med.mtz.moises.contrato13710.presentation.goal_items.GoalItemsActivity
+import cs.med.mtz.moises.contrato13710.system.broadcast.NotificationsBroadcastReceiver
 import org.koin.android.viewmodel.ext.android.viewModel
+import java.util.*
 
 class NewContractActivity : AppCompatActivity() {
 
@@ -27,6 +32,8 @@ class NewContractActivity : AppCompatActivity() {
 
     /** */
     private val contractId: Int by lazy { intent.extras!!.getInt("ID") }
+    private val durationInDays: Int by lazy { intent.extras!!.getInt("DURATION") }
+
 
     /** */
 
@@ -34,14 +41,26 @@ class NewContractActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         createContractClickListener()
-        // execute()
+        e()
+    }
+
+    fun e() {
+        binding.target.setText(intent.extras!!.getString("TARGET"))
     }
 
 
     private fun createContractClickListener() {
         binding.saveButton.setOnClickListener {
             if (target.isNotBlank()) {
-                newContractViewModel.newContractLiveData(contractId, target).observe(this) {}
+                newContractViewModel.newContractLiveData(
+                    contractId,
+                    target,
+                    durationOfContract(durationInDays)
+                )
+                    .observe(this) {}
+                sendNotificationAfterTheTime(
+                    durationOfContract(durationInDays)
+                )
                 startActivity(Intent(this, GoalItemsActivity::class.java))
                 finish()
             } else alertIncompleteData()
@@ -54,5 +73,26 @@ class NewContractActivity : AppCompatActivity() {
             .setNegativeButton("aceptar", null)
         val dialog: AlertDialog = builder.create()
         dialog.show()
+    }
+
+
+    private fun durationOfContract(currentDuration: Int): Int {
+        return when (currentDuration) {
+            1 -> currentDuration + 2
+            3 -> currentDuration + 4
+            7 -> currentDuration + 3
+            else -> currentDuration
+        }
+    }
+
+    private fun sendNotificationAfterTheTime(days: Int) {
+        val millsInADay = 86_400_000
+        val intent = Intent(this, NotificationsBroadcastReceiver::class.java).apply {
+            putExtra("ID", contractId)
+        }
+        val pendingIntent = PendingIntent.getBroadcast(this, 0, intent, 0)
+        val alarmManager: AlarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        val targetInMills = Date().time + 10_000// (millsInADay * days)
+        alarmManager.set(AlarmManager.RTC_WAKEUP, targetInMills, pendingIntent)
     }
 }

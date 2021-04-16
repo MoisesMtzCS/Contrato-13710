@@ -20,7 +20,7 @@ class ContractDetailsActivity : AppCompatActivity() {
         execute()
     }
 
-    fun execute() {
+    private fun execute() {
         val durationInDays = intent.extras?.getInt("DURATION")!!
         val detailsOfTarget = intent.extras?.getString("TARGET")!!
         binding.tvTarget.text =
@@ -30,7 +30,6 @@ class ContractDetailsActivity : AppCompatActivity() {
             getString(R.string.contract_duration_in_days, durationInDays)
 //        binding.tvTime.text = resources
 //            .getQuantityString(R.plurals.days_count, durationInDays, durationInDays)
-
 
     }
 }
