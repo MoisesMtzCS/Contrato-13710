@@ -33,6 +33,7 @@ class NewContractActivity : AppCompatActivity() {
     /** */
     private val contractId: Int by lazy { intent.extras!!.getInt("ID") }
     private val durationInDays: Int by lazy { intent.extras!!.getInt("DURATION") }
+    private val nameGoal: String? by lazy { intent.extras!!.getString("NAME") }
 
 
     /** */
@@ -89,10 +90,11 @@ class NewContractActivity : AppCompatActivity() {
         val millsInADay = 86_400_000
         val intent = Intent(this, NotificationsBroadcastReceiver::class.java).apply {
             putExtra("ID", contractId)
+            putExtra("NAME",nameGoal)
         }
         val pendingIntent = PendingIntent.getBroadcast(this, 0, intent, 0)
         val alarmManager: AlarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        val targetInMills = Date().time + 10_000// (millsInADay * days)
+        val targetInMills = Date().time + 5_000// (millsInADay * days)
         alarmManager.set(AlarmManager.RTC_WAKEUP, targetInMills, pendingIntent)
     }
 }

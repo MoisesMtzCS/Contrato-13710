@@ -10,6 +10,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import cs.med.mtz.moises.contrato13710.R
 import cs.med.mtz.moises.contrato13710.databinding.ActivityNewGoalBinding
+import cs.med.mtz.moises.contrato13710.domain.entity.Contract
+import cs.med.mtz.moises.contrato13710.domain.entity.Goal
 import cs.med.mtz.moises.contrato13710.presentation.goal_items.GoalItemsActivity
 import cs.med.mtz.moises.contrato13710.system.broadcast.NotificationsBroadcastReceiver
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -53,7 +55,7 @@ class NewGoalActivity : AppCompatActivity() {
         binding.save.setOnClickListener {
             if (nameGoal.isNotBlank() && target.isNotBlank()) {
                 launchNotificationAfterTime()
-                newGoalViewModel.createGoalFullLiveData(nameGoal, target, 1).observe(this) {}
+                newGoalViewModel.createGoalFullLiveData(nameGoal, target, 1).observe(this) { }
                 val intent = Intent(this, GoalItemsActivity::class.java)
                 startActivity(intent)
                 finish()
@@ -73,11 +75,19 @@ class NewGoalActivity : AppCompatActivity() {
 
     private fun launchNotificationAfterTime() {
         val millsInADay = 86_400_000
-        val intent = Intent(this, NotificationsBroadcastReceiver::class.java)
+        val intent = Intent(this, NotificationsBroadcastReceiver::class.java).apply {
+            putExtra("ID", 100)
+            putExtra("NAME", "HOLA MUNDO")
+        }
         val pendingIntent = PendingIntent.getBroadcast(this, 0, intent, 0)
         val alarmManager: AlarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val targetInMills = Date().time + 10000//millsInADay
         alarmManager.set(AlarmManager.RTC_WAKEUP, targetInMills, pendingIntent)
+    }
+
+    fun example() {
+        newGoalViewModel.createGoalFullLiveData("Tomar agua","Tomar dos vasos de agua",1).observe(this){}
+
     }
 
 }

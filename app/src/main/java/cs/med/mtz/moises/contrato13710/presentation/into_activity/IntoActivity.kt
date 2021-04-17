@@ -17,7 +17,7 @@ class IntoActivity : AppIntro() {
     /** */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        onlyShowOnce()
+        //onlyShowOnce()
         startIntro()
     }
 
@@ -91,30 +91,16 @@ class IntoActivity : AppIntro() {
     override fun onSkipPressed(currentFragment: Fragment?) {
         super.onSkipPressed(currentFragment)
         val intent = Intent(this, MainActivity::class.java)
-        //intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
-        finish()
     }
 
     override fun onDonePressed(currentFragment: Fragment?) {
         super.onDonePressed(currentFragment)
         val intent = Intent(this, MainActivity::class.java)
-        //intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
-        finish()
     }
 
-    private fun onlyShowOnce() {
-
-        val isFirstRun = getSharedPreferences(application.packageName, MODE_PRIVATE)
-            .getBoolean("isFirstRun", false)
-
-        if (isFirstRun) {
-            startActivity(Intent(this, MainActivity::class.java))
-           // finish()
-        }
-        getSharedPreferences(application.packageName, MODE_PRIVATE).edit()
-            .putBoolean("isFirstRun", true).apply()
-    }
 
 }

@@ -9,6 +9,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.gson.Gson
 import cs.med.mtz.moises.contrato13710.R
 import cs.med.mtz.moises.contrato13710.databinding.ActivityContractItemsBinding
 import cs.med.mtz.moises.contrato13710.domain.entity.Contract
@@ -17,6 +18,7 @@ import cs.med.mtz.moises.contrato13710.presentation.goal_items.GoalItemsActivity
 import cs.med.mtz.moises.contrato13710.presentation.new_contract.NewContractActivity
 import cs.med.mtz.moises.contrato13710.system.broadcast.NotificationsBroadcastReceiver
 import org.koin.android.viewmodel.ext.android.viewModel
+import java.lang.Exception
 import java.util.*
 
 class ContractItemsActivity : AppCompatActivity() {
@@ -145,9 +147,10 @@ class ContractItemsActivity : AppCompatActivity() {
         binding.goNewContract.setOnClickListener {
             val id = intent.extras?.getInt("ID")
             val intent = Intent(this, NewContractActivity::class.java).apply {
-                putExtra("ID", id)
+                putExtra("ID", contractId)
                 putExtra("DURATION", contract.durationInDays)
                 putExtra("TARGET", contract.target)
+                putExtra("NAME", nameGoal)
             }
             startActivity(intent)
             finish()
@@ -182,8 +185,6 @@ class ContractItemsActivity : AppCompatActivity() {
             notificationManager.createNotificationChannel(channel)
         }
     }
-
-
 
 
 }

@@ -5,12 +5,11 @@ import android.app.PendingIntent
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import cs.med.mtz.moises.contrato13710.R
 import cs.med.mtz.moises.contrato13710.presentation.contract_items.ContractItemsActivity
-import cs.med.mtz.moises.contrato13710.presentation.main.MainActivity
+import kotlin.random.Random
 
 /** */
 class NotificationsBroadcastReceiver : BroadcastReceiver() {
@@ -18,15 +17,19 @@ class NotificationsBroadcastReceiver : BroadcastReceiver() {
     /* */
     private val channelId = "channel_id_01"
 
-
     /** */
-    override fun onReceive(context: Context?, intent: Intent?) {
-        val notification = createNotification(context ?: return)
-        NotificationManagerCompat.from(context).notify(200, notification)
+    override fun onReceive(context: Context?, intent: Intent) {
+        val id = intent.getIntExtra("ID", -1)
+        val name = intent.getStringExtra("NAME")
+        if (id == -1) return
+        val notification = createNotification(context ?: return, id,name!!)
+        NotificationManagerCompat.from(context).notify(Random.nextInt(0, 200), notification)
     }
 
-    private fun createNotification(context: Context): Notification {
+    private fun createNotification(context: Context, id: Int, name:String): Notification {
         val intent = Intent(context, ContractItemsActivity::class.java).apply {
+            putExtra("ID", id)
+            putExtra("NAME",name)
         }
         val pendingIntent = PendingIntent.getActivity(context, 0, intent, 0)
         val builder = NotificationCompat.Builder(context, channelId)

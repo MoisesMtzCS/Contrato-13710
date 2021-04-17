@@ -52,6 +52,7 @@ class GoalItemsActivity : AppCompatActivity() {
     /** */
     private fun fillRecyclerView(goals: List<Goal>) {
         if (goals.isNotEmpty()) {
+            val goal = Goal(1000,"dhjsahd", arrayListOf(Contract(1000,"dsd",1,Date())))
             val goalAdapter = GoalAdapter(goals)
 
             binding.rvContract.adapter = goalAdapter
