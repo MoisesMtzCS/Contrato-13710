@@ -31,7 +31,7 @@ class NotificationsBroadcastReceiver : BroadcastReceiver() {
             putExtra("ID", id)
             putExtra("NAME",name)
         }
-        val pendingIntent = PendingIntent.getActivity(context, 0, intent, 0)
+        val pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_ONE_SHOT)
         val builder = NotificationCompat.Builder(context, channelId)
             .setSmallIcon(R.drawable.ic_contract)
             .setContentTitle("Su contrato ha finalizado")
