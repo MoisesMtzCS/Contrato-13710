@@ -79,7 +79,7 @@ class NewGoalActivity : AppCompatActivity() {
             putExtra("ID", 100)
             putExtra("NAME", "HOLA MUNDO")
         }
-        val pendingIntent = PendingIntent.getBroadcast(this, 0, intent, 0)
+        val pendingIntent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_ONE_SHOT)
         val alarmManager: AlarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val targetInMills = Date().time + 10000//millsInADay
         alarmManager.set(AlarmManager.RTC_WAKEUP, targetInMills, pendingIntent)
