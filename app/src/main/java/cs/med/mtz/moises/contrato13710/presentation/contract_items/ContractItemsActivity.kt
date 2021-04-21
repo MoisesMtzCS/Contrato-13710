@@ -23,10 +23,6 @@ import java.util.*
 
 class ContractItemsActivity : AppCompatActivity() {
 
-    /**
-     * variable for notification
-     */
-    private val channelId = "channel_id_01"
 
 
     /** */
@@ -68,8 +64,6 @@ class ContractItemsActivity : AppCompatActivity() {
     private fun execute() {
         loadContractsList(contractId)
         titleGoal()
-        //goCreateContractClickListener(contractId)
-        createNotificationChannel()
     }
 
     private fun loadContractsList(id: Int) {
@@ -169,22 +163,7 @@ class ContractItemsActivity : AppCompatActivity() {
     }
 
 
-    /**
-     * Notifications
-     */
-    private fun createNotificationChannel() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val name = "Notification Title"
-            val descriptionText = "Notification Description"
-            val importance = NotificationManager.IMPORTANCE_DEFAULT
-            val channel = NotificationChannel(channelId, name, importance).apply {
-                description = descriptionText
-            }
-            val notificationManager: NotificationManager =
-                getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-            notificationManager.createNotificationChannel(channel)
-        }
-    }
+
 
 
 }

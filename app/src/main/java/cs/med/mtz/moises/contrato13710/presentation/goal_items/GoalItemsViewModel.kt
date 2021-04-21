@@ -11,27 +11,15 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 
+/** */
 class GoalItemsViewModel(
     private val contractGoalRepository: ContractGoalRepository
-
 ) : ViewModel() {
-
-    private val goalsMutableLiveData: MutableLiveData<List<Goal>> = MutableLiveData()
-    val goalsLiveData: LiveData<List<Goal>> get() = goalsMutableLiveData
-
-    /** */
-    fun executeLoadGoals() = CoroutineScope(Dispatchers.IO).launch {
-        val goals = contractGoalRepository.getGoals()
-        goalsMutableLiveData.postValue(goals)
-    }
 
     /** */
     fun getGoalsAsLiveData(): LiveData<List<Goal>> = flow {
-        val goals = contractGoalRepository.getGoals()
+        val goals: List<Goal> = contractGoalRepository.getGoals()
         emit(goals)
     }.asLiveData(Dispatchers.IO)
-
-    /** */
-
 
 }

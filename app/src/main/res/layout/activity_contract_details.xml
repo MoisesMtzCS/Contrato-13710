@@ -33,7 +33,7 @@
             android:layout_marginHorizontal="22dp"
             android:layout_marginTop="22dp"
             android:textColor="@color/black"
-            tools:text="Detalles de contrato" />
+            tools:text="Detalles del objetivo" />
 
         <TextView
             android:id="@+id/tv_time"

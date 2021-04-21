@@ -2,11 +2,11 @@ package cs.med.mtz.moises.contrato13710.presentation.main
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import cs.med.mtz.moises.contrato13710.databinding.ActivityMainBinding
 import cs.med.mtz.moises.contrato13710.presentation.goal_items.GoalItemsActivity
 import cs.med.mtz.moises.contrato13710.presentation.new_goal.NewGoalActivity
+import cs.med.mtz.moises.contrato13710.presentation.tutorial.TutorialActivity
 
 
 /** */
@@ -30,6 +30,7 @@ class MainActivity : AppCompatActivity() {
     private fun execute() {
         goToCreateGoal()
         goToListGoals()
+        goIntro()
 
     }
 
@@ -43,6 +44,13 @@ class MainActivity : AppCompatActivity() {
     private fun goToListGoals() {
         val intent = Intent(this, GoalItemsActivity::class.java)
         binding.start.setOnClickListener {
+            startActivity(intent)
+        }
+    }
+
+    private fun goIntro(){
+        binding.help.setOnClickListener{
+            val intent = Intent(this, TutorialActivity::class.java)
             startActivity(intent)
         }
     }

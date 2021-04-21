@@ -54,8 +54,10 @@ class NewGoalActivity : AppCompatActivity() {
     private fun createGoalAndContractClickListener() {
         binding.save.setOnClickListener {
             if (nameGoal.isNotBlank() && target.isNotBlank()) {
-                launchNotificationAfterTime()
-                newGoalViewModel.createGoalFullLiveData(nameGoal, target, 1).observe(this) { }
+
+                newGoalViewModel.createGoalFullLiveData(nameGoal, target, 1).observe(this) {
+                    launchNotificationAfterTime(it)
+                }
                 val intent = Intent(this, GoalItemsActivity::class.java)
                 startActivity(intent)
                 finish()
@@ -73,20 +75,21 @@ class NewGoalActivity : AppCompatActivity() {
     }
 
 
-    private fun launchNotificationAfterTime() {
-        val millsInADay = 86_400_000
+    private fun launchNotificationAfterTime(id: Long) {
+        //val millsInADay = 86_400_000
         val intent = Intent(this, NotificationsBroadcastReceiver::class.java).apply {
-            putExtra("ID", 100)
-            putExtra("NAME", "HOLA MUNDO")
+            putExtra("ID", id.toInt())
+            putExtra("NAME", nameGoal)
         }
         val pendingIntent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_ONE_SHOT)
         val alarmManager: AlarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        val targetInMills = Date().time + 10000//millsInADay
+        val targetInMills = Date().time + 5000 //millsInADay
         alarmManager.set(AlarmManager.RTC_WAKEUP, targetInMills, pendingIntent)
     }
 
     fun example() {
-        newGoalViewModel.createGoalFullLiveData("Tomar agua","Tomar dos vasos de agua",1).observe(this){}
+        newGoalViewModel.createGoalFullLiveData("Tomar agua", "Tomar dos vasos de agua", 1)
+            .observe(this) {}
 
     }
 

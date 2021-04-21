@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="cs.med.mtz.moises.contrato13710">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:name=".ContractGoalApplication"
         android:allowBackup="false"
@@ -10,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Contrato13710">
-        <activity android:name=".presentation.new_contract.NewContractActivity"></activity>
+        <activity android:name=".presentation.tutorial.TutorialActivity"></activity>
+        <activity android:name=".presentation.new_contract.NewContractActivity" />
         <activity android:name=".presentation.contract_details.ContractDetailsActivity" />
         <activity android:name=".presentation.contract_items.ContractItemsActivity" />
         <activity android:name=".presentation.goal_items.GoalItemsActivity" />
@@ -27,7 +30,9 @@
         <activity android:name=".presentation.main.MainActivity" />
 
         <receiver android:name=".system.broadcast.NotificationsBroadcastReceiver" />
-        <activity android:name=".presentation.into_activity.IntoActivity"
+
+        <activity
+            android:name=".presentation.into_activity.IntoActivity"
             android:label="My Custom AppIntro" />
 
     </application>

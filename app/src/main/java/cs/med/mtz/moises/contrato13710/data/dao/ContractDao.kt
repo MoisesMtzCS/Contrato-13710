@@ -2,13 +2,12 @@ package cs.med.mtz.moises.contrato13710.data.dao
 
 import androidx.room.*
 import cs.med.mtz.moises.contrato13710.data.dto.ContractDto
-import cs.med.mtz.moises.contrato13710.domain.entity.Contract
 
 @Dao
 interface ContractDao {
 
-    @Query("SELECT * FROM contract_table")
-    suspend fun getAll(): List<ContractDto>
+    @Query("SELECT COUNT(id) FROM contract_table LIMIT 0")
+    suspend fun initDatabase(): Int
 
     @Query("SELECT * FROM contract_table WHERE id = :id")
     fun getById(id: Int): List<ContractDto>
@@ -20,7 +19,7 @@ interface ContractDao {
     suspend fun deleteContractsByGoalId(goalId: Int)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(contract: ContractDto)
+    suspend fun insert(contract: ContractDto):Long
 
     @Insert
     suspend fun insertOne(contract: ContractDto):Long

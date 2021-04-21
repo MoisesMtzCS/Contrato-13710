@@ -8,6 +8,17 @@
         android:orientation="vertical"
         tools:context=".presentation.main.MainActivity">
 
+        <ImageView
+            android:id="@+id/help"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:contentDescription="@null"
+            android:padding="8dp"
+            android:src="@drawable/ic_informacion" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

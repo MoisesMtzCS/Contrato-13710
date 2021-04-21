@@ -94,7 +94,7 @@ class NewContractActivity : AppCompatActivity() {
         }
         val pendingIntent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_ONE_SHOT)
         val alarmManager: AlarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        val targetInMills = Date().time + 5_000// (millsInADay * days)
+        val targetInMills = Date().time + (millsInADay * days)
         alarmManager.set(AlarmManager.RTC_WAKEUP, targetInMills, pendingIntent)
     }
 }
