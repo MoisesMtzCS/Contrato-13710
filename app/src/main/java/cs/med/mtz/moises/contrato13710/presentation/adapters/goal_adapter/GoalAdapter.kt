@@ -1,6 +1,5 @@
 package cs.med.mtz.moises.contrato13710.presentation.adapters.goal_adapter
 
-import android.app.Activity
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -41,7 +40,7 @@ class GoalAdapter(
                 putExtra("NAME", goal.name)
             }
             ContextCompat.startActivity(context, intent, null)
-            (context as Activity).finish()
+           // (context as Activity).finish()
 
         }
 

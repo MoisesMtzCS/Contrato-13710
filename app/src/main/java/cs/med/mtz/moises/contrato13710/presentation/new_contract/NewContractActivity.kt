@@ -42,13 +42,14 @@ class NewContractActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         createContractClickListener()
-        e()
+        getPreviousContractTarget()
     }
 
-    fun e() {
+    private fun getPreviousContractTarget() {
         binding.target.setText(intent.extras!!.getString("TARGET"))
     }
 
+    /** */
 
     private fun createContractClickListener() {
         binding.saveButton.setOnClickListener {
@@ -62,11 +63,12 @@ class NewContractActivity : AppCompatActivity() {
                 sendNotificationAfterTheTime(
                     durationOfContract(durationInDays)
                 )
-                startActivity(Intent(this, GoalItemsActivity::class.java))
                 finish()
             } else alertIncompleteData()
         }
     }
+
+    /** */
 
     private fun alertIncompleteData() {
         val builder = AlertDialog.Builder(this)
@@ -76,6 +78,7 @@ class NewContractActivity : AppCompatActivity() {
         dialog.show()
     }
 
+    /** */
 
     private fun durationOfContract(currentDuration: Int): Int {
         return when (currentDuration) {
@@ -86,11 +89,13 @@ class NewContractActivity : AppCompatActivity() {
         }
     }
 
+    /** */
+
     private fun sendNotificationAfterTheTime(days: Int) {
         val millsInADay = 86_400_000
         val intent = Intent(this, NotificationsBroadcastReceiver::class.java).apply {
             putExtra("ID", contractId)
-            putExtra("NAME",nameGoal)
+            putExtra("NAME", nameGoal)
         }
         val pendingIntent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_ONE_SHOT)
         val alarmManager: AlarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager

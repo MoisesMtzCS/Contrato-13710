@@ -24,15 +24,12 @@ import java.util.*
 class ContractItemsActivity : AppCompatActivity() {
 
 
-
     /** */
     val binding: ActivityContractItemsBinding by lazy {
         ActivityContractItemsBinding.inflate(layoutInflater)
     }
 
-    /**
-     * View model
-     */
+    /** */
 
     private val contractItemsViewModel: ContractItemsViewModel by viewModel()
 
@@ -42,11 +39,12 @@ class ContractItemsActivity : AppCompatActivity() {
         get() = binding.etName.text.toString()
 
     /** */
+
     private val contractId: Int by lazy { intent.extras!!.getInt("ID") }
     private val nameGoal: String? by lazy { intent.extras!!.getString("NAME") }
 
-
     /** */
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
@@ -55,16 +53,20 @@ class ContractItemsActivity : AppCompatActivity() {
     }
 
     /** */
+
     private fun setupViews() {
         setupOnDeleteGoalClickListener(contractId)
         setupOnUpdateGoalNameClickListener(contractId)
     }
 
     /** */
+
     private fun execute() {
         loadContractsList(contractId)
         titleGoal()
     }
+
+    /** */
 
     private fun loadContractsList(id: Int) {
         contractItemsViewModel.getContractsAsLiveData(id)
@@ -77,16 +79,25 @@ class ContractItemsActivity : AppCompatActivity() {
             }
     }
 
+    /** */
+
+    private fun fillRecyclerView(contracts: List<Contract>) {
+        val contractAdapter = ContractAdapter(contracts)
+        binding.rvContract.adapter = contractAdapter
+        binding.rvContract.layoutManager = LinearLayoutManager(this)
+    }
+
     /**
      *
      */
+
     private fun setupOnDeleteGoalClickListener(id: Int) {
         binding.deleteButton.setOnClickListener {
-            alert(id)
+            alertConfirmDelete(id)
         }
     }
 
-    private fun alert(id: Int) {
+    private fun alertConfirmDelete(id: Int) {
         val builder = AlertDialog.Builder(this)
             .setTitle(getString(R.string.confirm_delete))
             .setPositiveButton("aceptar") { dialog, _ ->
@@ -100,7 +111,6 @@ class ContractItemsActivity : AppCompatActivity() {
 
     private fun deleteGoalLiveData(id: Int) {
         contractItemsViewModel.deleteGoalAsLiveData(id).observe(this) {}
-        startActivity(Intent(this, GoalItemsActivity::class.java))
         finish()
     }
 
@@ -111,35 +121,34 @@ class ContractItemsActivity : AppCompatActivity() {
     private fun setupOnUpdateGoalNameClickListener(id: Int) {
         makeVisibleUpdateClickListener()
         binding.updateButton.setOnClickListener {
-            contractItemsViewModel.updateGoalAsLiveData(id, newName).observe(this) {}
-            startActivity(Intent(this, GoalItemsActivity::class.java))
-            finish()
+            if (newName.isNotBlank()) {
+                contractItemsViewModel.updateGoalAsLiveData(id, newName).observe(this) {}
+                finish()
+            } else alert()
 
         }
     }
 
-
-    private fun fillRecyclerView(contracts: List<Contract>) {
-        val contractAdapter = ContractAdapter(contracts)
-        binding.rvContract.adapter = contractAdapter
-        binding.rvContract.layoutManager = LinearLayoutManager(this)
-    }
 
     private fun titleGoal() {
         binding.nameGoal.text = nameGoal
     }
 
+    /** */
+
+
     private fun makeVisibleUpdateClickListener() {
         binding.makeVisibleButton.setOnClickListener {
-            binding.tilGoalName.visibility = View.VISIBLE
+            binding.newGoalName.visibility = View.VISIBLE
             binding.updateButton.visibility = View.VISIBLE
             binding.makeVisibleButton.visibility = View.GONE
         }
     }
 
+    /** */
+
     private fun goCreateContractClickListener(contract: Contract) {
         binding.goNewContract.setOnClickListener {
-            val id = intent.extras?.getInt("ID")
             val intent = Intent(this, NewContractActivity::class.java).apply {
                 putExtra("ID", contractId)
                 putExtra("DURATION", contract.durationInDays)
@@ -150,6 +159,8 @@ class ContractItemsActivity : AppCompatActivity() {
             finish()
         }
     }
+
+    /** */
 
     private fun makeVisibleAtTheEndOfTheContract(contract: Contract) {
         val millsInADay = 86_400_000
@@ -162,8 +173,15 @@ class ContractItemsActivity : AppCompatActivity() {
         }
     }
 
+    /** */
 
-
+    private fun alert() {
+        val builder = AlertDialog.Builder(this)
+            .setTitle(getString(R.string.empty))
+            .setPositiveButton("aceptar", null)
+        val dialog: AlertDialog = builder.create()
+        dialog.show()
+    }
 
 
 }

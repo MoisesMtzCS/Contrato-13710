@@ -24,6 +24,7 @@ class ContractGoalApplication : Application() {
      */
     private val channelId = "channel_id_01"
 
+
     /** */
     override fun onCreate() {
         super.onCreate()
@@ -31,6 +32,7 @@ class ContractGoalApplication : Application() {
         CoroutineScope(Dispatchers.IO).launch {
             get<GoalContractDatabase>().contractDao().initDatabase()
         }
+        createNotificationChannel()
     }
 
     /** */
@@ -41,6 +43,7 @@ class ContractGoalApplication : Application() {
             modules(getApplicationModules())
         }
     }
+
     /**
      * Notifications
      */

@@ -8,7 +8,6 @@ import org.koin.core.module.Module
 /** */
 fun getApplicationModules(): List<Module> {
     val featureModules: List<Module> = listOf(
-        splashModule,
         newGoalModule,
         goalAndAddModule,
         contractIntemsModule,

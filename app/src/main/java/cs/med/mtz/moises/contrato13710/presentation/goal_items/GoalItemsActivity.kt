@@ -15,22 +15,31 @@ import java.util.*
 
 class GoalItemsActivity : AppCompatActivity() {
 
-    /* */
+    /** */
     private val binding: ActivityGoalItemsBinding by lazy {
         ActivityGoalItemsBinding.inflate(layoutInflater)
     }
 
-    /* */
+
+    /** */
     private val goalItemsViewModel: GoalItemsViewModel by viewModel()
+
 
     /** */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+    }
+
+
+    /** */
+    override fun onStart() {
+        super.onStart()
         execute()
     }
 
     /** */
+
     private fun execute() {
         goalItemsViewModel.getGoalsAsLiveData().observe(this, goalsObserver)
     }
@@ -41,16 +50,15 @@ class GoalItemsActivity : AppCompatActivity() {
     }
 
     /** */
+
     private fun fillRecyclerView(goals: List<Goal>) {
-        if (goals.isNotEmpty()) {
-            val goalAdapter = GoalAdapter(goals)
-            binding.rvContract.adapter = goalAdapter
-            binding.rvContract.layoutManager = LinearLayoutManager(this)
-        } else {
+        if (goals.isEmpty()) {
             binding.messageNoGoals.visibility = View.VISIBLE
             binding.ivSad.visibility = View.VISIBLE
         }
-
+        val goalAdapter = GoalAdapter(goals)
+        binding.rvContract.adapter = goalAdapter
+        binding.rvContract.layoutManager = LinearLayoutManager(this)
     }
 
 }

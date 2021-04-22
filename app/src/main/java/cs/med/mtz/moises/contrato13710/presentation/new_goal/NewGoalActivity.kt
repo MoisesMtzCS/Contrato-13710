@@ -20,6 +20,7 @@ import java.util.*
 
 class NewGoalActivity : AppCompatActivity() {
 
+    /** */
 
     private val nameGoal: String
         get() = binding.nameGoal.text.toString()
@@ -51,12 +52,14 @@ class NewGoalActivity : AppCompatActivity() {
         createGoalAndContractClickListener()
     }
 
+    /** */
+
     private fun createGoalAndContractClickListener() {
         binding.save.setOnClickListener {
             if (nameGoal.isNotBlank() && target.isNotBlank()) {
 
                 newGoalViewModel.createGoalFullLiveData(nameGoal, target, 1).observe(this) {
-                    launchNotificationAfterTime(it)
+                    notificationLaunch(it)
                 }
                 val intent = Intent(this, GoalItemsActivity::class.java)
                 startActivity(intent)
@@ -64,6 +67,8 @@ class NewGoalActivity : AppCompatActivity() {
             } else alertIncompleteData()
         }
     }
+
+    /** */
 
 
     private fun alertIncompleteData() {
@@ -74,24 +79,21 @@ class NewGoalActivity : AppCompatActivity() {
         dialog.show()
     }
 
+    /** */
 
-    private fun launchNotificationAfterTime(id: Long) {
-        //val millsInADay = 86_400_000
+
+    private fun notificationLaunch(id: Long) {
+        val millsInADay = 86_400_000
         val intent = Intent(this, NotificationsBroadcastReceiver::class.java).apply {
             putExtra("ID", id.toInt())
             putExtra("NAME", nameGoal)
         }
         val pendingIntent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_ONE_SHOT)
         val alarmManager: AlarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        val targetInMills = Date().time + 5000 //millsInADay
+        val targetInMills = Date().time + millsInADay
         alarmManager.set(AlarmManager.RTC_WAKEUP, targetInMills, pendingIntent)
     }
 
-    fun example() {
-        newGoalViewModel.createGoalFullLiveData("Tomar agua", "Tomar dos vasos de agua", 1)
-            .observe(this) {}
-
-    }
 
 }
 

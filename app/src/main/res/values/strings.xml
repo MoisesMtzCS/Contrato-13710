@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Contrato  1 + 3 + 7 + 10</string>
+    <string name="app_name">Mis objetivos</string>
     <string name="bienvenido">Bienvenido!</string>
     <string name="comencemos_creando_una_meta">Comencemos creando un objetivo</string>
     <string name="iniciar">Iniciar</string>
@@ -14,6 +14,7 @@
     <string name="cambiar_nombre">Cambiar nombre</string>
     <string name="nuevo_contrato">Nuevo contrato</string>
     <string name="confirm_delete">Seguro que desea eliminar tu objetivo?</string>
+    <string name="empty">Nombre vacio. </string>
     <string name="sin_metas">Sin objetivos</string>
     <string name="detalles_del_contrato">Detalles del contrato</string>
     <string name="contract_duration_in_days">Duración en días: %d</string>
@@ -25,7 +26,7 @@
     <string name="how_does_it_work">¿Cómo funciona?</string>
     <string name="first_contract">Día 1: Primer contrato</string>
     <string name="between_contracts">Entre contratos</string>
-    <string name="read_text">Tomar 2 vaso de agua.</string>
+    <string name="read_text">Tomar 2 vasos de agua.</string>
     <string name="description">Podrás hacer ajustes para adaptarlos a tu ciclo diario.</string>
     <string name="second_day">Día 2: Segundo contrato</string>
     <string name="hidratations">Tomar 3 vasos de agua.</string>

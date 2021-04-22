@@ -23,7 +23,7 @@ class IntoActivity : AppIntro() {
     }
 
     private fun startIntro() {
-        //1
+        //first
         addSlide(
             AppIntroFragment.newInstance(
                 title = getString(R.string.welcome),
@@ -33,7 +33,7 @@ class IntoActivity : AppIntro() {
 
             )
         )
-        //2
+        //second
         addSlide(
             AppIntroFragment.newInstance(
                 title = getString(R.string.how_does_it_work),
@@ -42,7 +42,7 @@ class IntoActivity : AppIntro() {
                 backgroundColor = ContextCompat.getColor(this, R.color.teal_700)
             )
         )
-        //3
+        //third
         addSlide(
             AppIntroFragment.newInstance(
                 title = getString(R.string.between_contracts),

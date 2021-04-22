@@ -45,7 +45,7 @@ abstract class GoalContractDatabase : RoomDatabase() {
                     val goalDao = database.goalDao()
                     val contractDao = database.contractDao()
 
-                    val goal = GoalDto("Agua")
+                    val goal = GoalDto("Tomar Agua")
                     val goalId: Long = goalDao.insert(goal)
                     val contractDto = ContractDto(goalId.toInt(), "Tomar dos vasos de agua.", 1, Date())
                     contractDao.insert(contractDto)

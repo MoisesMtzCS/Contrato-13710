@@ -9,10 +9,13 @@ import com.google.android.youtube.player.YouTubePlayerView
 import cs.med.mtz.moises.contrato13710.R
 
 class TutorialActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedListener {
+
     /** */
+
     private val apiKey = "AIzaSyArmGoaP0OUUudkNR5VeA1s3v6dhoT6LLM"
 
     /** */
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tutorial)
@@ -21,6 +24,8 @@ class TutorialActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedListe
         youtube.initialize(apiKey, this)
 
     }
+
+    /** */
 
     override fun onInitializationSuccess(
         provider: YouTubePlayer.Provider?,
@@ -33,10 +38,13 @@ class TutorialActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedListe
         }
     }
 
+    /** */
+
     override fun onInitializationFailure(
         p0: YouTubePlayer.Provider?,
         p1: YouTubeInitializationResult?
     ) {
-        Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show()    }
+        Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show()
+    }
 
 }
