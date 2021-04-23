@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">Mis objetivos</string>
-    <string name="bienvenido">Bienvenido!</string>
+    <string name="app_name">Por Contrato</string>
+    <string name="bienvenido">!Bienvenido!</string>
     <string name="comencemos_creando_una_meta">Comencemos creando un objetivo</string>
     <string name="iniciar">Iniciar</string>
     <string name="nombre_de_la_meta">Nombre de la objetivo</string>
@@ -13,7 +13,7 @@
     <string name="nuevo_nombre">Nuevo nombre</string>
     <string name="cambiar_nombre">Cambiar nombre</string>
     <string name="nuevo_contrato">Nuevo contrato</string>
-    <string name="confirm_delete">Seguro que desea eliminar tu objetivo?</string>
+    <string name="confirm_delete">¿Seguro que desea eliminar su objetivo?</string>
     <string name="empty">Nombre vacio. </string>
     <string name="sin_metas">Sin objetivos</string>
     <string name="detalles_del_contrato">Detalles del contrato</string>
